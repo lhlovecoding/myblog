@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="./module/layui/css/layui.css" /> -->
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <div id="box">
+      <!-- 头部 -->
+      <div class="header">
+        <div class="h-content">
+          <div class="h-content-box">
+            <div class="left">
+              <a href="index.html">上山打老虎</a>
+            </div>
+            <div class="right">
+              <ul>
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#">归档</a></li>
+                <li><a href="#">标签</a></li>
+                <li><a href="#">添加</a></li>
+                <li><a href="#">登录</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 主体 -->
+      <div class="main">
+        <div class="main-content">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <!-- 底部 -->
+      <div></div>
+    </div>
+    <script src="./module/jquery-3.7.0.min.js"></script>
+    <script>
+      let scrollInit = 0;
+      let fSize, headerHeight;
+      $(function () {
+        fSize = parseInt($(".left a").css("font-size"));
+        headerHeight = parseInt($(".h-content").height());
+        window.onscroll = function () {
+          let sTop = event.target.scrollingElement.scrollTop;
+          let height = parseInt($(".h-content").height());
+          if (sTop - scrollInit > 0) {
+            //向下滚动
+            fSize = fSize - fSize * 0.01;
+            fSize = fSize < 14 ? 14 : fSize;
+
+            //头部得高度
+            h = height - headerHeight * 0.05;
+            minH = headerHeight * 0.7;
+            h = h < minH ? minH : h;
+          } else {
+            fSize = fSize + fSize * 0.01;
+            fSize = fSize > 32 ? 32 : fSize;
+
+            //头部得高度
+            h = height + headerHeight * 0.05;
+            h = h > headerHeight ? headerHeight : h;
+          }
+          scrollInit = sTop;
+          $(".h-content").css("height", h + "px");
+          $(".left a").css("font-size", fSize);
+        };
+        if (location.pathname == "/index.html") {
+          $("li a").eq(0).addClass("a-active");
+        }
+        $("ul li a").click(function () {
+          $("ul li a").removeClass("a-active");
+          $(this).addClass("a-active");
+        });
+        $("body").css({
+          "background-color": "#fff",
+        });
+      });
+    </script>
+  </body>
+</html>

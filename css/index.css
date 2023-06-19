@@ -1,0 +1,100 @@
+:root {
+    --theme-color: #fff;
+    --shadow-color:rgba(0,0,0,0.4);
+    --font-color-1: #484853;
+  }
+  *{
+    padding: 0;
+    margin: 0;
+  }
+body{
+    background-color: #535360;
+    overflow-x: hidden;
+}
+#box{
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+}
+.header{
+    position: fixed;
+    top: 0;
+}
+.h-content{
+    height: 8.65vh;
+    width: 100vw;
+    background-color: var(--theme-color);
+    box-shadow: 2px 2px 5px var(--shadow-color);
+}
+.h-content-box{
+    margin: 0 auto;
+    width: 60vw;
+    height: 100%;
+    
+}
+.left{
+    float: left;
+    height: 100%;
+    line-height: 8.65vh;
+}
+.left a{
+    color: var(--text-color-1);
+    font-weight: bold;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-family: "fangsong";
+}
+.right{
+    float: right;
+    height: 100%;
+}
+.right ul{
+    height: 100% !important;
+    list-style: none;
+    line-height: 8.65vh;
+}
+.layui-tab{
+    height: 100%;
+    margin:0;
+}
+ul li {
+    display:inline;
+    margin-left: 20px;
+}
+ul li a{
+    display: inline-block;
+    text-decoration: none;
+    color:#50505c;
+    font-size:15.2px;
+    letter-spacing:0.2px;
+    line-height:22px;
+    text-align:left;
+    padding-bottom: 8px;
+}
+ul li a:hover{
+    border-bottom: 3px solid #2A46c5;
+    color: #2A46c5;
+}
+.a-active{
+    border-bottom: 3px solid #2A46c5;
+    color: #2A46c5;
+}
+.main{
+    width: 100vw;
+    margin-top: 65px;
+}
+.main-content{
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 65px;
+    padding-top: 20px;
+}
+.main-content div{
+    margin: 0 auto;
+    width: 80%;
+    height: 180px;
+    box-shadow: 2px 2px 5px var(--shadow-color);
+    border-radius: 10px;
+    margin-top: 30px;
+}
