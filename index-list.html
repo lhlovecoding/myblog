@@ -1,0 +1,93 @@
+<style>
+  .con-list {
+    padding: 28px;
+    color: #50505c;
+    position: relative;
+  }
+  .con-list h3 {
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+  .con-list a {
+    text-decoration: none;
+    color: #4c4c57;
+  }
+  .con-list a:hover {
+    color: #06c;
+  }
+  .intro {
+    margin-top: 30px;
+    font-size: 13px;
+  }
+  .list-footer {
+    width: 92%;
+    position: absolute;
+    bottom: 20px;
+    color: #808091;
+    margin-top: 50px;
+    font-size: 0.92rem;
+  }
+  .list-footer div {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  .read-all {
+    cursor: pointer;
+    float: right;
+  }
+  .tags span {
+    margin-left: 20px;
+  }
+  .tags svg {
+    vertical-align: sub;
+  }
+</style>
+<div class="con-list">
+  <div>
+    <h3><a href="">开发随机</a></h3>
+    <div class="intro">
+      <p>📒 记录每日开发过程中的一些碎片，持续更新</p>
+    </div>
+    <div class="list-footer">
+      <div><span> 3 个月前</span></div>
+      <div><span>日常开发</span> <span>dev</span></div>
+      <div class="read-all"><span>阅读全文</span></div>
+    </div>
+  </div>
+</div>
+<div class="con-list">
+  <div>
+    <h3><a href="">RocketMQ分布式事务原理</a></h3>
+    <div class="intro">
+      <p>
+        分布式事务常见的方案有TCC（Try-Confirm-Cancel），XA两阶段提交方案，可靠消息最终一致性方案，最大努力通知方案等等。其中可靠消息最终一致性方案主要就可以依靠RocketMQ来做，因为RocketMQ支持消息事务。先上一张图：Roc...
+      </p>
+    </div>
+    <div class="list-footer">
+      <div>
+        <span>
+          <i class="iconfont icon-shijian"></i>
+
+          3个月前</span
+        >
+      </div>
+      <div class="tags">
+        <span
+          ><i class="iconfont icon-a-business-icon-Bigpromotion"></i> 日常开发
+        </span>
+        <span><i class="iconfont icon-biaoqian"></i> dev </span>
+      </div>
+      <div class="read-all">
+        <span>阅读全文 <i class="iconfont icon-iconfontjiantou4"></i></span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(function () {
+    $.getJSON("data.json", function (data) {
+      console.log(data);
+    });
+  });
+</script>

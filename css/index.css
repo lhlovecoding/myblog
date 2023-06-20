@@ -58,11 +58,11 @@ body{
     height: 100%;
     margin:0;
 }
-ul li {
+.right ul li {
     display:inline;
     margin-left: 20px;
 }
-ul li a{
+.right ul li a{
     display: inline-block;
     text-decoration: none;
     color:#50505c;
@@ -72,7 +72,7 @@ ul li a{
     text-align:left;
     padding-bottom: 8px;
 }
-ul li a:hover{
+.right ul li a:hover{
     border-bottom: 3px solid #2A46c5;
     color: #2A46c5;
 }
@@ -86,15 +86,20 @@ ul li a:hover{
 }
 .main-content{
     margin: 0 auto;
-    width: 80%;
+    width: 70%;
     margin-top: 65px;
     padding-top: 20px;
 }
-.main-content div{
+.main-content .con-list{
     margin: 0 auto;
     width: 80%;
-    height: 180px;
+    height: 140px;
     box-shadow: 2px 2px 5px var(--shadow-color);
     border-radius: 10px;
     margin-top: 30px;
+}
+.main-content .con-list:hover{
+    box-shadow: 3px 3px 6px var(--shadow-color);
+    transform: scale(1.03) ;
+    transition: all 0.5s;
 }

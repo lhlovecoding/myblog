@@ -8,6 +8,7 @@
     <!-- <link rel="stylesheet" href="./module/layui/css/layui.css" /> -->
     <link rel="stylesheet" href="./css/index.css" />
     <link rel="stylesheet" href="./css/nprogress.css" />
+    <link rel="stylesheet" href="./css/icon-font.css" />
     <script src="./module/jquery-3.7.0.min.js"></script>
   </head>
   <body>
@@ -16,13 +17,7 @@
       <div class="header"></div>
       <!-- 主体 -->
       <div class="main">
-        <div class="main-content" id="pjax-container">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+        <div class="main-content" id="pjax-container"></div>
       </div>
       <!-- 底部 -->
       <div class="footer"></div>
@@ -31,6 +26,7 @@
     <script>
       $(".header").load("header.html");
       $(".footer").load("footer.html");
+      $("#pjax-container").load("index-list.html");
     </script>
   </body>
 </html>
