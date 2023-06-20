@@ -1,93 +1,111 @@
-<style>
-  .con-list {
-    padding: 28px;
-    color: #50505c;
-    position: relative;
-  }
-  .con-list h3 {
-    font-weight: 600;
-    font-size: 1.4rem;
-    line-height: 1.5;
-  }
-  .con-list a {
-    text-decoration: none;
-    color: #4c4c57;
-  }
-  .con-list a:hover {
-    color: #06c;
-  }
-  .intro {
-    margin-top: 30px;
-    font-size: 13px;
-  }
-  .list-footer {
-    width: 92%;
-    position: absolute;
-    bottom: 20px;
-    color: #808091;
-    margin-top: 50px;
-    font-size: 0.92rem;
-  }
-  .list-footer div {
-    display: inline-block;
-    margin-right: 20px;
-  }
-  .read-all {
-    cursor: pointer;
-    float: right;
-  }
-  .tags span {
-    margin-left: 20px;
-  }
-  .tags svg {
-    vertical-align: sub;
-  }
-</style>
-<div class="con-list">
-  <div>
-    <h3><a href="">开发随机</a></h3>
-    <div class="intro">
-      <p>📒 记录每日开发过程中的一些碎片，持续更新</p>
-    </div>
-    <div class="list-footer">
-      <div><span> 3 个月前</span></div>
-      <div><span>日常开发</span> <span>dev</span></div>
-      <div class="read-all"><span>阅读全文</span></div>
-    </div>
-  </div>
-</div>
-<div class="con-list">
-  <div>
-    <h3><a href="">RocketMQ分布式事务原理</a></h3>
-    <div class="intro">
-      <p>
-        分布式事务常见的方案有TCC（Try-Confirm-Cancel），XA两阶段提交方案，可靠消息最终一致性方案，最大努力通知方案等等。其中可靠消息最终一致性方案主要就可以依靠RocketMQ来做，因为RocketMQ支持消息事务。先上一张图：Roc...
-      </p>
-    </div>
-    <div class="list-footer">
-      <div>
-        <span>
-          <i class="iconfont icon-shijian"></i>
-
-          3个月前</span
-        >
-      </div>
-      <div class="tags">
-        <span
-          ><i class="iconfont icon-a-business-icon-Bigpromotion"></i> 日常开发
-        </span>
-        <span><i class="iconfont icon-biaoqian"></i> dev </span>
-      </div>
-      <div class="read-all">
-        <span>阅读全文 <i class="iconfont icon-iconfontjiantou4"></i></span>
-      </div>
-    </div>
-  </div>
-</div>
 <script>
+  let DATA = [];
   $(function () {
     $.getJSON("data.json", function (data) {
-      console.log(data);
+      DATA = data;
+      //处理数据一个方法
+      getList();
+    });
+    $(document).on("pjax:success", function () {
+      //获取地址栏的参数
+      if (location.pathname == "/index.html") {
+        let page = 1;
+        if (location.search) {
+          page = location.search.match(/page=(\d+)/)[1];
+        }
+
+        getList(page);
+      }
     });
   });
+  function showList(data) {
+    let html = "";
+    data.forEach((item, index) => {
+      html += `<div class="con-list">
+                  <div>
+                    <h3><a href="">${item.title}${item.id}</a></h3>
+                    <div class="intro">
+                      <p>
+                        ${item.intro}
+                      </p>
+                    </div>
+                    <div class="list-footer">
+                      <div>
+                        <span>
+                          <i class="iconfont icon-shijian"></i>
+                          ${getAgoMonth(item.created)}</span>
+                      </div>
+                      <div class="tags">
+                        ${getTagsList(item.tags)}
+                      </div>
+                      <div class="read-all">
+                        <span>阅读全文 <i class="iconfont icon-iconfontjiantou4"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>`;
+    });
+    $("#pjax-container").html(html);
+  }
+  //处理分页
+  function getList(page = 1, limit = 5) {
+    showList(DATA.slice((page - 1) * limit, page * limit));
+    let total = Math.ceil(DATA.length / limit);
+    let html = `<div class="page-box">
+                    ${
+                      page == 1
+                        ? ""
+                        : `<a href="index.html?page=${
+                            page - 1
+                          }" class="prev" data-pjax>上一页</a>`
+                    }
+                    ${
+                      page == total
+                        ? ""
+                        : `<a href="index.html?page=${
+                            +page + 1
+                          }" class="next" data-pjax>下一页</a>`
+                    }
+                </div>`;
+    $("#pjax-container").append(html);
+  }
+  //获取标签列表
+  function getTagsList(tags) {
+    let html = "";
+    tags.forEach((item) => {
+      html += ` <span>
+                    <i class="iconfont ${getIcon(item)}"></i>
+                    ${item}
+                </span>`;
+    });
+    return html;
+  }
+  //获取tags相对应的icon
+  function getIcon(tag) {
+    switch (tag) {
+      case "dev":
+        return "iconfont icon-biaoqian";
+      case "日常开发":
+        return "icon-wenjianjia";
+      default:
+        return "iconfont icon-biaoqian";
+    }
+  }
+  //获取几个月之前 如果超过12个月就返回年份
+  function getAgoMonth(date) {
+    let now = new Date();
+    let old = new Date(date);
+    let ago = now - old;
+    let month = ago / 1000 / 60 / 60 / 24 / 30;
+    if (month > 12) {
+      return old.getFullYear() + "年";
+    } else {
+      return numToChinese(Math.floor(month)) + "个月前";
+    }
+  }
+  //数字转中文
+  function numToChinese(num) {
+    let arr = ["一", "二", "三", "四", "五", "六", "七", "八", "九"];
+    return arr[num - 1];
+  }
 </script>
