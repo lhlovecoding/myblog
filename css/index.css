@@ -103,3 +103,40 @@ body{
     transform: scale(1.03) ;
     transition: all 0.5s;
 }
+.footer{
+    width: 100vw;
+    height: 130px;
+    margin-top: 100px;
+    text-align: center;
+}
+.footer p:first-child{
+    position: relative;
+}
+.footer p{
+    margin-top:10px;
+    color:#808091;
+    font-size:15.2px;
+    letter-spacing:0.2px;
+}
+
+ @keyframes jump {
+    0%, 100% {
+      transform: scale(1);
+    }
+    10%, 30% {
+      transform: scale(0.88);
+    }
+    20%, 40%, 60%, 80% {
+      transform: scale(1.08);
+    }
+    50%, 70% {
+      transform: scale(1.08);
+    }
+  }
+.footer .icon-xin {
+    position: absolute;
+    display: inline-block;
+    top: 0px;
+    left: 52%;
+    animation: jump 1.2s ease-in-out infinite ;
+}
