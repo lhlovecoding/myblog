@@ -3,6 +3,7 @@
   $(function () {
     $.getJSON("data.json", function (data) {
       DATA = data;
+      localStorage.setItem("Blog", JSON.stringify(data));
       //处理数据一个方法
       getList();
     });

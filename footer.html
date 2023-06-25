@@ -40,10 +40,10 @@
       $(".h-content").css("height", h + "px");
       $(".left a").css("font-size", fSize);
     };
-    if (location.pathname == "/index.html") {
-      $("li a").eq(0).addClass("a-active");
-    }
-    $("ul li a").click(function () {
+    const pagesArr = ["/index.html", "/history.html"];
+    let index = pagesArr.indexOf(location.pathname);
+    $(".h-content .right li a").eq(index).addClass("a-active");
+    $(".h-content .right ul li a").click(function () {
       $("ul li a").removeClass("a-active");
       $(this).addClass("a-active");
     });
